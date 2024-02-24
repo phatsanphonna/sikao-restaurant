@@ -9,6 +9,7 @@
 
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
+
 </body>
 
 </html>

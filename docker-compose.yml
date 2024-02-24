@@ -2,23 +2,29 @@ version: '2'
 
 services:
   web:
+    container_name: web
     image: nginx:latest
     ports:
       - 8080:80
     volumes:
-      - ./web:/usr/share/nginx/html
+      - ./src:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
     restart: always
   php:
+    container_name: php
     image: php:7.0-fpm
-  database:
-    image: mysql:latest
-    ports:
-      - 12000:3306
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
     volumes:
-      - ./database:/var/lib/mysql
+      - ./src:/usr/share/nginx/html
+
+  # database:
+  #   image: mysql:latest
+  #   ports:
+  #     - 12000:3306
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: test
+  #     MYSQL_USER: user
+  #     MYSQL_PASSWORD: password
+  #   volumes:
+  #     - ./database:/var/lib/mysql
