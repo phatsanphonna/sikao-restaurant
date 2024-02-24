@@ -12,10 +12,9 @@ services:
     restart: always
   php:
     container_name: php
-    image: php:7.0-fpm
+    build: ./fpm
     volumes:
       - ./src:/usr/share/nginx/html
-
   # database:
   #   image: mysql:latest
   #   ports:
