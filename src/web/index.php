@@ -9,7 +9,7 @@
 
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
-
+  <h1>Home</h1>
 </body>
 
 </html>
