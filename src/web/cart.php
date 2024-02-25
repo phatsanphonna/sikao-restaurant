@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         while ($row = $result->fetch_assoc()) {
           $total += $row['amount'] * $row['food_price'];
       ?>
-          <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg">
+          <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg bg-stone-100">
             <div class="flex gap-4 items-center">
               <img src="<?php echo $row['food_image'] ?>" alt="<?php echo $row['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
             </div>

@@ -32,13 +32,13 @@
           $food_result = $conn->query($sql);
       ?>
           <li>
-            <h3 class="text-2xl font-bold">ออเดอร์เลขที่: <?php echo $row['order_list_id'] ?></h3>
+            <h3 class="text-lg font-bold">ออเดอร์เลขที่: <?php echo $row['order_list_id'] ?></h3>
             <ul>
               <?php if ($food_result->num_rows > 0) {
                 while ($food_row = $food_result->fetch_assoc()) {
                   $total += $food_row['amount'] * $food_row['food_price'];
               ?>
-                  <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg">
+                  <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg bg-stone-100">
                     <div class="flex gap-4 items-center">
                       <img src="<?php echo $food_row['food_image'] ?>" alt="<?php echo $food_row['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
                     </div>
@@ -60,7 +60,7 @@
     </ul>
 
     <div class="flex justify-between mb-24">
-      <h3 class="text-xl font-bold">ราคารวม</h3>
+      <h3 class="text-xl font-bold">ราคาทั้งหมด</h3>
       <p class="text-2xl font-bold text-primary">฿<?php echo number_format($total) ?></p>
     </div>
 
