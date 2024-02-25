@@ -11,8 +11,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $cart = mysqli_fetch_assoc($result);
   $cart_id = $cart['cart_id'];
 
-  $insert_sql = "INSERT INTO cart_food (cart_id, food_id, amount) VALUES ($cart_id, $food_id, $amount)";
-  mysqli_query($conn, $insert_sql);
+  $create_order_list_sql = "INSERT INTO order_list (order_id) VALUES ($order_id)";
+  $conn->query($create_order_list_sql);
+
+  $get_last_order_list_sql = "SELECT * FROM order_list WHERE order_id = $order_id ORDER BY created_at DESC LIMIT 1";
+  $last_order_list_result = $conn->query($get_last_order_list_sql);
+  $last_order_list = mysqli_fetch_assoc($last_order_list_result);
+  $order_list_id = $last_order_list['order_list_id'];
+
+  $cart_item_sql = "SELECT * FROM cart_food WHERE cart_id = $cart_id";
+  $cart_item_result = $conn->query($cart_item_sql);
+
+  while ($cart_item = mysqli_fetch_assoc($cart_item_result)) {
+    $food_id = $cart_item['food_id'];
+    $amount = $cart_item['amount'];
+
+    $create_order_item_sql = "INSERT INTO order_list_food (order_list_id, food_id, amount) VALUES ($order_list_id, $food_id, $amount)";
+    $conn->query($create_order_item_sql);
+  }
+
+  $delete_cart_sql = "DELETE FROM cart_food WHERE cart_id = $cart_id";
+  $conn->query($delete_cart_sql);
+
+  header("Location: /order-sent.php?order_id=$order_id");
 }
 ?>
 

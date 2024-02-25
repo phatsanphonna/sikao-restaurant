@@ -60,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               <img src="<?php echo $row['food_image'] ?>" alt="<?php echo $row['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
             </div>
             <div class="flex flex-col gap-2">
-              <h3 class="text-xl font-bold"><?php echo $row['food_name'] ?></h3>
+              <h3 class="text-lg font-medium"><?php echo $row['food_name'] ?></h3>
 
               <div class="flex justify-between items-center">
-                <form class="flex w-2/3 justify-center items-center gap-2" method="POST">
+                <form class="flex w-1/2 justify-center items-center gap-2" method="POST">
                   <input type="hidden" name="cart_food_id" value="<?php echo $row['cart_food_id'] ?>">
                   <button name='decrement' type="submit" class="bg-surface text-black px-3 py-1 rounded-full">-</button>
                   <input type="number" name="amount" class="text-center w-full border-surface rounded-full" readonly value="<?php echo $row['amount'] ?>" min="1">
@@ -74,19 +74,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               </div>
             </div>
           </li>
-      <?php }
-      } ?>
+        <?php }
+      } else { ?>
+        <p class="text-center text-xl">ไม่มีรายการอาหารในตะกร้า</p>
+      <?php } ?>
     </ul>
 
-    <div class="flex justify-between">
-      <h3 class="text-xl font-bold">ราคารวม</h3>
-      <p class="text-2xl font-bold">฿<?php echo $total ?></p>
-    </div>
+    <?php if ($result->num_rows > 0) { ?>
+      <div class="flex justify-between">
+        <h3 class="text-xl font-bold">ราคารวม</h3>
+        <p class="text-2xl font-bold text-primary">฿<?php echo number_format($total) ?></p>
+      </div>
 
-    <form action="order-sent.php=order_id=<?php echo $_GET['order_id'] ?>" method="POST" class="flex justify-center">
-      <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?>">
-      <button type="submit" class="bg-primary text-white px-4 py-2 text-center rounded-lg">สั่งอาหาร</a>
-    </form>
+      <form action="order-sent.php" method="POST" class="flex justify-center">
+        <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?>">
+        <button type="submit" class="bg-primary text-white px-4 py-2 text-center rounded-lg">สั่งอาหาร</a>
+      </form>
+    <?php } ?>
   </main>
 </body>
 

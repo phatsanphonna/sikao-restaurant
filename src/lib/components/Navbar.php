@@ -18,8 +18,13 @@ if (isset($order_id)) {
       <?php echo $order['table_name'] ?>
     </a>
   <?php } else if (isset($_SESSION['user'])) { ?>
-    <a class="text-2xl font-medium text-teritary pr-2" href="index.php">
-      <?php echo $_SESSION['user']['username']; ?>
-    </a>
+    <div class="flex gap-2 pr-2">
+      <a class="text-2xl font-medium text-teritary" href="index.php">
+        <?php echo $_SESSION['user']['username']; ?>
+      </a>
+      <a href="signout.php" class="text-2xl text-secondary underline" href="index.php">
+        Sign Out
+      </a>
+    </div>
   <?php } ?>
 </nav>
