@@ -16,7 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<script>alert('Password is incorrect')</script>";
   } else {
     $_SESSION['user'] = $user;
-    header('Location: /index.php');
+    if ($user['user_role'] == 'CHEF') {
+      header('Location: /kitchen.php');
+    } else {
+      header('Location: /index.php');
+    }
   }
 }
 ?>

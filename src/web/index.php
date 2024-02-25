@@ -18,10 +18,6 @@ if (!isset($_SESSION['user'])) {
 
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
-  
-  <form action="signout.php" method="POST">
-    <button type="submit">signout</button>
-  </form>
 </body>
 
 </html>

@@ -4,6 +4,13 @@ include '../lib/conn.php';
 if (!isset($_GET['order_id'])) {
   header('Location: /index.php');
 }
+
+$sql = "SELECT * FROM res_order WHERE order_id = " . $_GET['order_id'] . " AND checkout_at IS NULL";
+$result = $conn->query($sql);
+
+if ($result->num_rows == 0) {
+  header('Location: /index.php');
+}
 ?>
 
 <!DOCTYPE html>
