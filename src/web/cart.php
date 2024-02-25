@@ -49,8 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $sql = "SELECT * FROM cart c JOIN cart_food cf on (cf.cart_id = c.cart_id) JOIN food f on (f.food_id = cf.food_id) WHERE c.order_id = $order_id";
       $result = $conn->query($sql);
 
+      $total = 0;
+
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+          $total += $row['amount'] * $row['food_price'];
       ?>
           <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg">
             <div class="flex gap-4 items-center">
@@ -59,17 +62,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="flex flex-col gap-2">
               <h3 class="text-xl font-bold"><?php echo $row['food_name'] ?></h3>
 
-              <form class="flex w-2/3 justify-center items-center gap-2" method="POST">
-                <input type="hidden" name="cart_food_id" value="<?php echo $row['cart_food_id'] ?>">
-                <button name='decrement' type="submit" class="bg-surface text-black px-3 py-1 rounded-full">-</button>
-                <input type="number" name="amount" class="text-center w-full border-surface rounded-full" readonly value="<?php echo $row['amount'] ?>" min="1">
-                <button name='increment' type="submit" class="bg-surface text-black px-3 py-1 rounded-full">+</button>
-              </form>
+              <div class="flex justify-between items-center">
+                <form class="flex w-2/3 justify-center items-center gap-2" method="POST">
+                  <input type="hidden" name="cart_food_id" value="<?php echo $row['cart_food_id'] ?>">
+                  <button name='decrement' type="submit" class="bg-surface text-black px-3 py-1 rounded-full">-</button>
+                  <input type="number" name="amount" class="text-center w-full border-surface rounded-full" readonly value="<?php echo $row['amount'] ?>" min="1">
+                  <button name='increment' type="submit" class="bg-surface text-black px-3 py-1 rounded-full">+</button>
+                </form>
+
+                <p class="text-2xl font-bold text-primary pr-2">฿<?php echo number_format($row['amount'] * $row['food_price']) ?></p>
+              </div>
             </div>
           </li>
       <?php }
       } ?>
     </ul>
+
+    <div class="flex justify-between">
+      <h3 class="text-xl font-bold">ราคารวม</h3>
+      <p class="text-2xl font-bold">฿<?php echo $total ?></p>
+    </div>
 
     <form action="order-sent.php=order_id=<?php echo $_GET['order_id'] ?>" method="POST" class="flex justify-center">
       <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?>">
