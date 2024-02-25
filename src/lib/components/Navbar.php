@@ -10,10 +10,16 @@ if (isset($order_id)) {
 }
 ?>
 
-<nav class="h-14 flex items-center justify-between px-4">
-  <?php include '../lib/components/Logo.php'; ?>
+<nav class="h-24 flex items-center justify-between px-4">
+  <?php include '../lib/components/LogoSmall.php'; ?>
 
-  <h4 class="text-2xl font-bold text-teritary">
-    <?php echo $order['table_name']; ?>
-  </h4>
+  <?php if (isset($order_id)) { ?>
+    <a class="text-2xl font-medium text-teritary pr-2" href="order.php?order_id=<?php echo $order_id ?>">
+      <?php echo $order['table_name'] ?>
+    </a>
+  <?php } else if (isset($_SESSION['user'])) { ?>
+    <a class="text-2xl font-medium text-teritary pr-2" href="index.php">
+      <?php echo $_SESSION['user']['username']; ?>
+    </a>
+  <?php } ?>
 </nav>
