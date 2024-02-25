@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 <script src="https://example.com/fontawesome/v6.5.1/js/all.js" data-auto-replace-svg="nest"></script>
+<script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
 <script>
   tailwind.config = {
     theme: {
