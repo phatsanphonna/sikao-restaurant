@@ -35,7 +35,7 @@ $food = mysqli_fetch_assoc($result);
       <?php echo $food['food_description'] ?>
     </p>
 
-    <form action="order.php" method="POST" class="flex flex-col gap-4 items-center">
+    <form action="add-to-cart.php" method="POST" class="flex flex-col gap-4 items-center">
       <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
       <input type="hidden" name="food_id" value="<?php echo $food_id ?>">
 
