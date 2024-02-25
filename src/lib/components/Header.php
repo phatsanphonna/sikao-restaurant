@@ -9,7 +9,8 @@
       extend: {
         colors: {
           primary: '#FB8020',
-          secondary: '#B7B7B7',
+          secondary: '#B40000',
+          teritary: '#B7B7B7',
           surface: '#FFF',
         }
       }

@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user'])) {
+  header('Location: /signin.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,11 +19,10 @@
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
   
-  <?php echo $_GET['q']; ?>
-
-  <h1 class="button">
-    Hello world!
-  </h1>
+  <form action="signout.php" method="POST">
+    <button type="submit">signout</button>
+  </form>
+  <?php include '../lib/components/Cart.php'; ?>
 </body>
 
 </html>

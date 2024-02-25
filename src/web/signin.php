@@ -1,20 +1,22 @@
 <?php
+session_start();
 include '../lib/conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+  $sql = "SELECT * FROM user WHERE username = '$username'";
   $result = mysqli_query($conn, $sql);
   $user = mysqli_fetch_assoc($result);
 
-  if ($user) {
-    session_start();
-    $_SESSION['user'] = $user;
-    header('Location: /');
+  if (!$user) {
+    echo "<script>alert('Username not found')</script>";
+  } else if (!password_verify($password, $user['password'])) {
+    echo "<script>alert('Password is incorrect')</script>";
   } else {
-    echo 'Invalid username or password';
+    $_SESSION['user'] = $user;
+    header('Location: /index.php');
   }
 }
 ?>
