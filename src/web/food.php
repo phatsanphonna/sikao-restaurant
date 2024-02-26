@@ -31,9 +31,14 @@ $food = mysqli_fetch_assoc($result);
       <?php echo $food['food_name'] ?>
     </h2>
     <img src="<?php echo $food['food_image'] ?>" alt="<?php echo $food['food_name'] ?>" class="rounded-lg h-96 object-cover">
-    <p class="text-left text-xl">
-      <?php echo $food['food_description'] ?>
-    </p>
+    <div>
+      <p class="text-left text-xl">
+        <?php echo $food['food_description'] ?>
+      </p>
+      <p class="text-left text-primary font-bold text-2xl">
+        ฿<?php echo number_format($food['food_price']) ?>
+      </p>
+    </div>
 
     <form action="add-to-cart.php" method="POST" class="flex flex-col gap-4 items-center">
       <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
