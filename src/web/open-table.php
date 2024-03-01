@@ -6,6 +6,7 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Hello</h1>
+  <input type="text" value="0" readonly>
+
 </body>
 </html>
