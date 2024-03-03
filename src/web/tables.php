@@ -20,7 +20,7 @@ if (!isset($_SESSION['user'])) {
   <?php include '../lib/components/Navbar.php'; ?>
 
   <?php if (!isset($_GET['table_id'])) { ?>
-    <main class="p-4 flex gap-6 justify-center items-center divide-x">
+    <main class="p-4 flex gap-6 divide-x">
       <aside class="h-full">
         <?php
         $sql = "SELECT * FROM res_order ro JOIN res_table rt ON (ro.table_id = rt.table_id) WHERE ro.checkout_at IS NULL";
@@ -42,15 +42,18 @@ if (!isset($_SESSION['user'])) {
         } ?>
       </aside>
       
-      <div class="grid grid-cols-3 w-full gap-2 place-items-center">
+      <div class="grid grid-cols-3 w-full gap-16 place-items-center">
         <?php
         $sql = "SELECT * FROM res_table";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
+            $sql = "SELECT * FROM res_order WHERE table_id = " . $row['table_id'] . " AND checkout_at IS NULL";
+            $active_result = $conn->query($sql);
+            $is_active = $active_result->num_rows > 0;
         ?>
-            <a href="menu.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-lg w-40 h-20 shadow-lg text-center flex justify-center items-center text-2xl text-white bg-primary">
+            <a href="tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-2xl w-40 h-20 text-center flex justify-center items-center text-2xl <?php $is_active ? print('text-white bg-primary') : print('text-black bg-stone-200') ?>">
               <?php echo $row['table_name'] ?>
             </a>
         <?php }
@@ -66,7 +69,7 @@ if (!isset($_SESSION['user'])) {
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
       ?>
-          <a href="menu.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-full p-1 shadow-lg text-center text-white bg-primary">
+          <a href="tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-full p-1 shadow-lg text-center text-white bg-primary">
             <?php echo $row['table_name'] ?>
           </a>
       <?php }
