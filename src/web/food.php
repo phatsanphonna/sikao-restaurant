@@ -30,9 +30,9 @@ $food = mysqli_fetch_assoc($result);
     <h2 class="text-secondary text-left text-4xl font-bold">
       <?php echo $food['food_name'] ?>
     </h2>
-    <img src="<?php echo $food['food_image'] ?>" alt="<?php echo $food['food_name'] ?>" class="rounded-lg h-96 object-cover">
+    <img src="data:image/jpeg;base64,<?php echo base64_encode($food['food_image']) ?>" alt="<?php echo $food['food_name'] ?>" class="rounded-lg h-96 object-cover">
     <div>
-      <p class="text-left text-xl">
+      <p class="text-left text-lg text-gray-500">
         <?php echo $food['food_description'] ?>
       </p>
       <p class="text-left text-primary font-bold text-2xl">
