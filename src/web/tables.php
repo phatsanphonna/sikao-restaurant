@@ -79,9 +79,8 @@ if (!isset($_SESSION['user'])) {
 
       <header>
         <h4 class="text-8xl font-bold"><?php echo $row['table_name'] ?></h4>
+        <hr>
       </header>
-
-      <hr>
 
       <div class="grid grid-cols-3 gap-4 text-4xl drop-shadow">
         <?php if (!isset($customer_in_row)) { ?>

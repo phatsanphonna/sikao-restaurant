@@ -1,4 +1,6 @@
 <?php
+include '../lib/conn.php';
+
 session_start();
 
 if (!isset($_SESSION['user'])) {
@@ -8,6 +10,11 @@ if (!isset($_SESSION['user'])) {
 if (!isset($_GET['table_id'])) {
   header('Location: /tables.php');
 }
+
+$table_id = $_GET['table_id'];
+$sql = "SELECT * FROM res_table WHERE table_id = $table_id";
+$result = $conn->query($sql);
+$table = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +29,15 @@ if (!isset($_GET['table_id'])) {
 
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
+
+  <main class="p-4 flex flex-col gap-6 container mx-auto">
+
+    <header>
+      <h4 class="text-8xl font-bold"><?php echo $table['table_name'] ?></h4>
+      <hr>
+    </header>
+
+  </main>
 </body>
 
 </html>
