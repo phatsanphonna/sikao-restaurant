@@ -88,7 +88,7 @@ if (!isset($_SESSION['user'])) {
           <a class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
             รายการอาหารที่สั่งไป
           </a>
-          <a href="open-table.php" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white bg-primary">
+          <a href="open-table.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white bg-primary">
             เปิดบิล
           </a>
           <a class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
