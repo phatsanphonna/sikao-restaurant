@@ -107,8 +107,8 @@ if (!isset($_SESSION['user'])) {
           <a href="order-list.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
             รายการอาหารที่สั่งไป
           </a>
-          <a href="checkout.php" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
-            เก็บเงิน
+          <a href="checkout.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+            จ่ายเงิน
           </a>
         <?php } ?>
 

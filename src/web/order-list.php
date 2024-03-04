@@ -58,7 +58,15 @@ $table = $result->fetch_assoc();
             <div>
               <h4 class="text-2xl font-bold"><?php echo $order_list['food_name'] ?></h4>
               <p class="text-lg">จำนวน: <?php echo $order_list['amount'] ?></p>
-              <p class="text-lg">สถานะ: <?php echo $order_list['order_food_status'] ?></p>
+              <p class="text-lg">สถานะ: <?php 
+                if ($order_list['order_food_status'] == 'SENT_TO_KITCHEN') {
+                  echo 'ส่งให้ครัว';
+                } else if ($order_list['order_food_status'] == 'COOKING') {
+                  echo 'กำลังทำ';
+                } else if ($order_list['order_food_status'] == 'READY') {
+                  echo 'เสร็จแล้ว';
+                }
+              ?></p>
             </div>
           </div>
         </li>
