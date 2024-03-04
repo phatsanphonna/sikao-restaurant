@@ -1,6 +1,8 @@
 <?php
 include '../lib/conn.php';
 
+session_start();
+
 if (!isset($_GET['table_id'])) {
   header('Location: /tables.php');
 }
