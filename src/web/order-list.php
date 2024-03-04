@@ -37,6 +37,35 @@ $table = $result->fetch_assoc();
       <hr>
     </header>
 
+    <h2 class="text-secondary text-left text-4xl font-bold">
+      รายการอาหารที่สั่ง
+    </h2>
+
+    <ul>
+      <?php
+      $sql = "SELECT order_id FROM res_order WHERE table_id = $table_id AND checkout_at IS NULL";
+      $result = $conn->query($sql);
+      $order = $result->fetch_assoc();
+      $order_id = $order['order_id'];
+
+      $sql = "SELECT * FROM order_list_food olf JOIN order_list ol ON (ol.order_list_id = olf.order_list_id) WHERE order_id = $order_id";
+      $result = $conn->query($sql);
+
+      while ($order_list = $result->fetch_assoc()) { ?>
+        <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg bg-stone-100">
+          <div class="flex gap-4 items-center">
+            <img src="<?php echo $order_list['food_image'] ?>" alt="<?php echo $order_list['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
+            <div>
+              <h4 class="text-2xl font-bold"><?php echo $order_list['food_name'] ?></h4>
+              <p class="text-lg">จำนวน: <?php echo $order_list['amount'] ?></p>
+              <p class="text-lg">สถานะ: <?php echo $order_list['order_food_status'] ?></p>
+            </div>
+          </div>
+        </li>
+      <?php } ?>
+      ?>
+    </ul>
+
   </main>
 </body>
 
