@@ -38,7 +38,7 @@
               ?>
                   <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg bg-stone-100">
                     <div class="flex gap-4 items-center">
-                      <img src="<?php echo $food_row['food_image'] ?>" alt="<?php echo $food_row['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
+                      <img src="data:image/jpeg;base64,<?php echo base64_encode($food_row['food_image']) ?>" alt="<?php echo $food_row['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
                     </div>
                     <div class="flex flex-col gap-2 w-full">
                       <h3 class="text-lg font-medium"><?php echo $food_row['food_name'] ?></h3>
