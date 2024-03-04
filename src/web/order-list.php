@@ -54,7 +54,7 @@ $table = $result->fetch_assoc();
       while ($order_list = $result->fetch_assoc()) { ?>
         <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg bg-stone-100">
           <div class="flex gap-4 items-center">
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['food_image']) ?>" alt="<?php echo $order_list['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($order_list['food_image']) ?>" alt="<?php echo $order_list['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
             <div>
               <h4 class="text-2xl font-bold"><?php echo $order_list['food_name'] ?></h4>
               <p class="text-lg">จำนวน: <?php echo $order_list['amount'] ?></p>
