@@ -29,7 +29,7 @@ if (!isset($_SESSION['user'])) {
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
         ?>
-            <a href="tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-lg w-72 h-40 shadow-lg flex flex-col justify-between text-white bg-primary p-4">
+            <a href="tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-lg w-72 h-40 shadow-lg flex flex-col justify-between text-white bg-primary p-4 mb-10">
               <h4 class="text-8xl font-bold text-left">
                 <?php echo $row['table_name'] ?>
               </h4>
@@ -42,7 +42,7 @@ if (!isset($_SESSION['user'])) {
         } ?>
       </aside>
 
-      <div class="grid grid-cols-3 w-full gap-16 place-items-center">
+      <div class="grid grid-cols-3 w-full gap-2 place-items-center">
         <?php
         $sql = "SELECT * FROM res_table";
         $result = $conn->query($sql);
