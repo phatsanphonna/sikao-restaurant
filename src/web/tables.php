@@ -41,7 +41,7 @@ if (!isset($_SESSION['user'])) {
         <?php }
         } ?>
       </aside>
-      
+
       <div class="grid grid-cols-3 w-full gap-16 place-items-center">
         <?php
         $sql = "SELECT * FROM res_table";
@@ -61,19 +61,53 @@ if (!isset($_SESSION['user'])) {
       </div>
     </main>
   <?php } else { ?>
-    <main class="screen p-4 flex flex-col gap-6 justify-center items-center">
+    <main class="p-4 flex flex-col gap-6 container mx-auto">
       <?php
       $sql = "SELECT * FROM res_table WHERE table_id = " . $_GET['table_id'];
       $result = $conn->query($sql);
+      $row = $result->fetch_assoc();
 
-      if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+      $customer_in_sql = "SELECT * FROM res_order WHERE table_id = " . $_GET['table_id'] . " AND checkout_at IS NULL";
+      $customer_in_result = $conn->query($customer_in_sql);
+      $is_customer_in = $customer_in_result->num_rows > 0;
+      $customer_in_row = null;
+
+      if ($is_customer_in) {
+        $customer_in_row = $customer_in_result->fetch_assoc();
+      }
       ?>
-          <a href="tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-full p-1 shadow-lg text-center text-white bg-primary">
-            <?php echo $row['table_name'] ?>
+
+      <header>
+        <h4 class="text-8xl font-bold"><?php echo $row['table_name'] ?></h4>
+      </header>
+
+      <hr>
+
+      <div class="grid grid-cols-3 gap-4 text-4xl drop-shadow">
+        <?php if (!isset($customer_in_row)) { ?>
+          <a class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+            รายการอาหารที่สั่งไป
           </a>
-      <?php }
-      } ?>
+          <a href="open-table.php" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white bg-primary">
+            เปิดบิล
+          </a>
+          <a class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+            Print QR Code
+          </a>
+        <?php } else { ?>
+          <a href="print-qr-code.php" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+            Print QR Code
+          </a>
+          <a href="order-list.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+            รายการอาหารที่สั่งไป
+          </a>
+          <a href="checkout.php" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+            เก็บเงิน
+          </a>
+        <?php } ?>
+
+      </div>
+
     </main>
   <?php } ?>
 </body>
