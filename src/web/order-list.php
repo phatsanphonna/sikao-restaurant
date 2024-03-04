@@ -63,7 +63,6 @@ $table = $result->fetch_assoc();
           </div>
         </li>
       <?php } ?>
-      ?>
     </ul>
 
   </main>
