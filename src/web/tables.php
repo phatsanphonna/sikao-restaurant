@@ -101,7 +101,7 @@ if (!isset($_SESSION['user'])) {
             Print QR Code
           </a>
         <?php } else { ?>
-          <a href="print-qr-code.php?print-qr=<?php echo $row['table_id'] ?>&order_id=<?php echo $customer_in_row['order_id'] ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+          <a target="_blank" href="print-qr-code.php?print-qr=<?php echo $row['table_id'] ?>&order_id=<?php echo $customer_in_row['order_id'] ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
             Print QR Code
           </a>
           <a href="order-list.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
