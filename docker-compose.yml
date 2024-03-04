@@ -10,11 +10,15 @@ services:
       - ./src:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf
     restart: always
+    networks:
+      - sikao
   php:
     container_name: php
     build: ./fpm
     volumes:
       - ./src:/usr/share/nginx/html
+    networks:
+      - sikao
   # database:
   #   image: mysql:latest
   #   ports:
@@ -27,3 +31,7 @@ services:
   #     MYSQL_PASSWORD: password
   #   volumes:
   #     - ./database:/var/lib/mysql
+
+networks:
+  sikao:
+    driver: bridge
