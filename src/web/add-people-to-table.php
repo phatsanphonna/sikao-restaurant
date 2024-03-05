@@ -18,8 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $sql = "SELECT * FROM res_order WHERE table_id = $table_id AND checkout_at IS NULL";
       $result = $conn->query($sql)->fetch_assoc();
 
-      echo $result['order_id'];
-
       $sql = "INSERT INTO cart (order_id) VALUES (". $result['order_id']. ");";
       $conn->query($sql);
     }
