@@ -41,7 +41,7 @@ $table = $result->fetch_assoc();
       รายการอาหารที่สั่ง
     </h2>
 
-    <ul>
+    <ul class="flex flex-col gap-4">
       <?php
       $sql = "SELECT order_id FROM res_order WHERE table_id = $table_id AND checkout_at IS NULL";
       $result = $conn->query($sql);
@@ -52,7 +52,7 @@ $table = $result->fetch_assoc();
       $result = $conn->query($sql);
 
       while ($order_list = $result->fetch_assoc()) { ?>
-        <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg bg-stone-100">
+        <li class="flex items-center gap-4 p-2 rounded-lg shadow-lg bg-stone-50">
           <div class="flex gap-4 items-center">
             <img src="data:image/jpeg;base64,<?php echo base64_encode($order_list['food_image']) ?>" alt="<?php echo $order_list['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
             <div>

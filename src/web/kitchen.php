@@ -17,8 +17,7 @@ if (isset($_POST['order_list_food_id'])) {
 
   // Check if all food items in the order list have been marked as 'READY'
   $check_sql = "SELECT COUNT(*) AS total_food FROM order_list_food WHERE order_list_id = " . $_GET['order_list_id'] . " AND order_food_status <> 'READY';";
-  $check_result = $conn->query($check_sql);
-  $check_row = $check_result->fetch_assoc();
+  $check_row = $conn->query($check_sql)->fetch_assoc();
 
   if ($check_row['total_food'] == 0) {
     // Update order_success to 1 if all food items are 'READY'
