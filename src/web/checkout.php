@@ -38,6 +38,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $sql = "SELECT * FROM res_table WHERE table_id = $table_id";
   $table = $conn->query($sql)->fetch_assoc();
+
+  $total = 0;
+
+  if ($order) {
+    $sql = "SELECT * FROM order_list_food olf JOIN food f on (f.food_id = olf.food_id) JOIN order_list ol ON (ol.order_list_id = olf.order_list_id) WHERE ol.order_id = " . $order['order_id'];
+    $result = $conn->query($sql);
+    $foods = $result->fetch_all(MYSQLI_ASSOC);
+
+    foreach ($foods as $food) {
+      $total += $food['amount'] * $food['price'];
+    }
+  }
 }
 ?>
 
@@ -65,45 +77,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <hr>
     </header>
 
-    <?php if (!isset($_POST['order_id'])) { ?>
-      <h2 class="text-secondary text-left text-4xl font-bold">
-        จ่ายเงิน
-      </h2>
+    <h2 class="text-secondary text-left text-4xl font-bold">
+      จ่ายเงิน
+    </h2>
 
-      <ul class="grid grid-cols-3 gap-4">
-        <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
-          <form method="POST" action="checkout.php" class="h-full">
-            <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
-            <input type="hidden" name="payment_method" value="CASH">
-            <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">
-              <img src="../lib/assets/cashicon.png" alt="">
-              <p class="text-4xl text-gray-600 group-hover:text-white">เงินสด</p>
-            </a>
-          </form>
-        </li>
-        <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
-          <form method="POST" action="checkout.php" class="h-full">
-            <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
-            <input type="hidden" name="payment_method" value="QR_PAYMENT">
-            <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">
-              <img src="../lib/assets/promptpayicon.png" alt="">
-              <p class="text-4xl text-gray-600 group-hover:text-white">พร้อมเพย์</p>
-            </a>
-          </form>
-        </li>
-        <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
-          <form method="POST" action="checkout.php" class="h-full">
-            <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
-            <input type="hidden" name="payment_method" value="CREDIT_CARD">
-            <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">
-              <img src="../lib/assets/creditcardicon.png" alt="">
-              <p class="text-4xl text-gray-600 group-hover:text-white">บัตรเครดิต</p>
-            </a>
-          </form>
-        </li>
-      </ul>
-    <?php } else { ?>
-    <?php } ?>
+    <div class="flex justify-between items-center">
+      <h3 class="text-2xl font-bold">ยอดที่ต้องจ่ายทั้งหมด</h3>
+      <p class="text-4xl font-bold text-primary">฿<?php echo number_format($total, 2) ?></p>
+    </div>
+
+    <ul class="grid grid-cols-3 gap-4">
+      <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
+        <form method="POST" action="checkout.php" class="h-full">
+          <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
+          <input type="hidden" name="payment_method" value="CASH">
+          <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">
+            <img src="../lib/assets/cashicon.png" alt="">
+            <p class="text-4xl text-gray-600 group-hover:text-white">เงินสด</p>
+          </a>
+        </form>
+      </li>
+      <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
+        <form method="POST" action="checkout.php" class="h-full">
+          <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
+          <input type="hidden" name="payment_method" value="QR_PAYMENT">
+          <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">
+            <img src="../lib/assets/promptpayicon.png" alt="">
+            <p class="text-4xl text-gray-600 group-hover:text-white">พร้อมเพย์</p>
+          </a>
+        </form>
+      </li>
+      <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
+        <form method="POST" action="checkout.php" class="h-full">
+          <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
+          <input type="hidden" name="payment_method" value="CREDIT_CARD">
+          <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">
+            <img src="../lib/assets/creditcardicon.png" alt="">
+            <p class="text-4xl text-gray-600 group-hover:text-white">บัตรเครดิต</p>
+          </a>
+        </form>
+      </li>
+    </ul>
   </main>
 </body>
 

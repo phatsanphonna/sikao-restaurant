@@ -27,6 +27,7 @@ if (!isset($_SESSION['user'])) {
   <?php if (!isset($_GET['table_id'])) { ?>
     <main class="p-4 flex gap-6">
       <aside class="screen overflow-y-auto w-96 flex flex-col gap-4">
+        <h4 class="text-4xl font-bold">โต๊ะที่เปิดใช้งาน</h4>
         <?php
         $sql = "SELECT * FROM res_order ro JOIN res_table rt ON (ro.table_id = rt.table_id) WHERE ro.checkout_at IS NULL";
         $result = $conn->query($sql);
