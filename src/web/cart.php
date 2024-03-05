@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include '../lib/components/Header.php'; ?>
-  <title>Cart - Si Kao Restaurant</title>
+  <title>Cart - Gin Kao Restaurant</title>
 </head>
 
 <body>

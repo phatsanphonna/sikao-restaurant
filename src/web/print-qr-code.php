@@ -28,7 +28,7 @@ $order = $conn->query($sql)->fetch_assoc();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Print QR Code - Si Kao Restaurant</title>
+  <title>Print QR Code - Gin Kao Restaurant</title>
   <?php include '../lib/components/Header.php'; ?>
   <script>
     window.onload = () => {
@@ -47,7 +47,7 @@ $order = $conn->query($sql)->fetch_assoc();
     <p>จำนวน <?php echo $order['customer_amount'] ?> ท่าน</p>
   </header>
 
-  <img src="../lib/assets/qrcode.png" alt="">
+  <img src="../lib/assets/qrcode.png" alt="<?php echo $order['table_name'] ?> QR Code">
   <hr class="w-full">
   <p class="text-center text-sm">QR Code สำหรับสั่งอาหารของโต๊ะ ท่านสามารถใช้ Smartphone ในการสแกนผ่าน Application อ่าน QR Code</p>
 </body>

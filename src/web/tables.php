@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include '../lib/components/Header.php'; ?>
-  <title>โต๊ะ - Si Kao Restaurant</title>
+  <title>โต๊ะ - Gin Kao Restaurant</title>
   <style>
     .screen {
       height: calc(100vh - 8rem);

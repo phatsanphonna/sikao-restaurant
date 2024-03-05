@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include '../lib/components/Header.php'; ?>
-  <title>Order Sent - Si Kao Restaurant</title>
+  <title>Order Sent - Gin Kao Restaurant</title>
   <style>
     .fill-screen {
       height: calc(100vh - 6rem);

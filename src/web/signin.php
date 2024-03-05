@@ -32,13 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include '../lib/components/Header.php'; ?>
-  <title>Sign In - Si Kao Restaurant</title>
+  <title>Sign In - Gin Kao Restaurant</title>
 </head>
 
 <body>
   <div class="container mx-auto grid place-items-center h-screen">
     <form class="shadow-lg w-80 rounded-lg p-2" method="POST">
-      <h1 class="use-serif font-bold text-center text-2xl text-primary">Si Kao Restaurant</h1>
+      <h1 class="use-serif font-bold text-center text-2xl text-primary">Gin Kao Restaurant</h1>
 
       <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
       <div>

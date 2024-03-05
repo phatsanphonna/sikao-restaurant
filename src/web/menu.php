@@ -24,7 +24,7 @@ if ($result->num_rows == 0) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include '../lib/components/Header.php'; ?>
-  <title>เมนู - Si Kao Restaurant</title>
+  <title>เมนู - Gin Kao Restaurant</title>
 </head>
 
 <body>

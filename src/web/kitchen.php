@@ -25,7 +25,7 @@ if (isset($_POST['order_list_food_id'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include '../lib/components/Header.php'; ?>
-  <title>Kitchen - Si Kao Restaurant</title>
+  <title>Kitchen - Gin Kao Restaurant</title>
 </head>
 
 <body>

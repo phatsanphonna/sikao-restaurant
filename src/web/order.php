@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include '../lib/components/Header.php'; ?>
-  <title>Order - Si Kao Restaurant</title>
+  <title>Order - Gin Kao Restaurant</title>
 </head>
 
 <body>
