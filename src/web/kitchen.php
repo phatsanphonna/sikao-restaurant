@@ -14,9 +14,22 @@ if ($_SESSION['user']['user_role'] !== 'CHEF') {
 if (isset($_POST['order_list_food_id'])) {
   $sql = "UPDATE order_list_food SET order_food_status = '" . $_POST['order_food_status'] . "' WHERE order_list_food_id = " . $_POST['order_list_food_id'] . ";";
   $conn->query($sql);
+
+  // Check if all food items in the order list have been marked as 'READY'
+  $check_sql = "SELECT COUNT(*) AS total_food FROM order_list_food WHERE order_list_id = " . $_GET['order_list_id'] . " AND order_food_status <> 'READY';";
+  $check_result = $conn->query($check_sql);
+  $check_row = $check_result->fetch_assoc();
+
+  if ($check_row['total_food'] == 0) {
+    // Update order_success to 1 if all food items are 'READY'
+    $update_sql = "UPDATE order_list SET order_success = 1 WHERE order_list_id = " . $_GET['order_list_id'];
+    $conn->query($update_sql);
+  }
+
   header('Location: /kitchen.php?order_list_id=' . $_GET['order_list_id']);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +52,7 @@ if (isset($_POST['order_list_food_id'])) {
 
       <div class="grid grid-cols-1 gap-4">
         <?php
-        $sql = "SELECT *, ol.created_at as `ol_created_at` FROM order_list ol JOIN res_order o ON (ol.order_id = o.order_id) JOIN res_table t on (o.table_id = t.table_id) WHERE checkout_at IS NULL ORDER BY ol.created_at ASC;";
+        $sql = "SELECT *, ol.created_at as `ol_created_at` FROM order_list ol JOIN res_order o ON (ol.order_id = o.order_id) JOIN res_table t on (o.table_id = t.table_id) WHERE order_success = 0 ORDER BY ol.created_at ASC;";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -84,7 +97,7 @@ if (isset($_POST['order_list_food_id'])) {
     <?php } else { ?>
       <div class="flex justify-between items-end">
         <h2 class="text-secondary text-left text-6xl font-bold">
-          ออเดอร์ที่ 14
+          ออเดอร์ที่ : <?php echo $_GET['order_list_id']; ?>
         </h2>
         <p class="text-4xl">
           <span class="font-medium">สั่งเมื่อ :</span>

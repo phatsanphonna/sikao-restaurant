@@ -48,7 +48,7 @@ $table = $result->fetch_assoc();
       $order = $result->fetch_assoc();
       $order_id = $order['order_id'];
 
-      $sql = "SELECT * FROM order_list_food olf JOIN food f ON (olf.food_id = f.food_id) JOIN order_list ol ON (ol.order_list_id = olf.order_list_id) WHERE order_id = $order_id";
+      $sql = "SELECT * FROM order_list_food olf JOIN food f ON (olf.food_id = f.food_id) JOIN order_list ol ON (ol.order_list_id = olf.order_list_id) WHERE order_id = $order_id ORDER BY f.food_id ASC ";
       $result = $conn->query($sql);
 
       while ($order_list = $result->fetch_assoc()) { ?>

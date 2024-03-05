@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $cart = mysqli_fetch_assoc($result);
   $cart_id = $cart['cart_id'];
 
-  $create_order_list_sql = "INSERT INTO order_list (order_id) VALUES ($order_id)";
+  $create_order_list_sql = "INSERT INTO order_list (order_id, order_success) VALUES ($order_id, 0)";
   $conn->query($create_order_list_sql);
 
   $get_last_order_list_sql = "SELECT * FROM order_list WHERE order_id = $order_id ORDER BY created_at DESC LIMIT 1";
