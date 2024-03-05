@@ -58,14 +58,22 @@ $bill = $conn->query($sql)->fetch_assoc();
               <div>
                 <h4 class="text-2xl font-bold"><?php echo $food['food_name'] ?></h4>
                 <p class="text-lg">จำนวน: <?php echo $food['amount'] ?></p>
-                <p class="text-lg">ราคา: <?php echo $food['price'] ?> บาท</p>
+                <p class="text-lg">ราคา: <?php echo $food['food_price'] * $food['amount'] ?> บาท</p>
               </div>
             </div>
           </li>
         <?php } ?>
+        <li>
+          <div class="flex justify-between items-center">
+            <h3 class="text-2xl font-bold">ยอดที่ต้องจ่ายทั้งหมด</h3>
+            <p class="text-4xl font-bold text-primary">฿<?php echo number_format($bill['total'], 2) ?></p>
+          </div>
+        </li>
       </ul>
 
-      
+      <a target="_blank" href="print-bill.php?bill_id=<?php echo $_GET['bill_id'] ?>" class="bg-primary text-white text-center px-4 py-2 w-full rounded-full">
+        พิมพ์ใบเสร็จ
+      </a>
   </main>
 </body>
 
