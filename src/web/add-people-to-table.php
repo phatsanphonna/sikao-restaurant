@@ -9,9 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $sql_check_table = "SELECT * FROM res_table WHERE table_id = $table_id";
   $result_check_table = $conn->query($sql_check_table);
 
-  if ($result_check_table->num_rows > 0) {
-    // หากโต๊ะมีอยู่ในฐานข้อมูล แต่ต้องการสร้างข้อมูลใหม่
-
+  if ($result_check_table->num_rows != 0) {
     // คำสั่ง SQL สำหรับเพิ่มข้อมูลใหม่
     $sql_create_reservation = "INSERT INTO res_order (table_id, customer_amount) VALUES ($table_id, $amount)";
 
@@ -19,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($conn->query($sql_create_reservation) === TRUE) {
       $sql = "SELECT * FROM res_order WHERE table_id = $table_id AND checkout_at IS NULL";
       $result = $conn->query($sql)->fetch_assoc();
+
+      echo $result['order_id'];
 
       $sql = "INSERT INTO cart (order_id) VALUES (". $result['order_id']. ");";
       $conn->query($sql);
