@@ -39,7 +39,7 @@ if (isset($_POST['order_list_food_id'])) {
 
       <div class="grid grid-cols-1 gap-4">
         <?php
-        $sql = "SELECT *, ol.created_at as `ol_created_at` FROM order_list ol JOIN res_order o ON (ol.order_id = o.order_id) JOIN res_table t on (o.table_id = t.table_id) WHERE checkout_at IS NULL ORDER BY ol.created_at DESC;";
+        $sql = "SELECT *, ol.created_at as `ol_created_at` FROM order_list ol JOIN res_order o ON (ol.order_id = o.order_id) JOIN res_table t on (o.table_id = t.table_id) WHERE checkout_at IS NULL ORDER BY ol.created_at ASC;";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
