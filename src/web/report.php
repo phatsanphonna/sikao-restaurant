@@ -7,6 +7,10 @@ if (!isset($_SESSION['user'])) {
   header('Location: /signin.php');
 }
 
+if ($_SESSION['user']['user_role'] === 'CHEF') {
+  header('Location: /index.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $history = $_POST['history'];
 

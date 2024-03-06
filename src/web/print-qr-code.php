@@ -5,6 +5,14 @@ if (!isset($_GET['order_id'])) {
   header('Location: /index.php');
 }
 
+if (!isset($_SESSION['user'])) {
+  header('Location: /signin.php');
+}
+
+if ($_SESSION['user']['user_role'] === 'CHEF') {
+  header('Location: /index.php');
+}
+
 $order_id = $_GET['order_id'];
 
 include "../lib/phpqrcode/qrlib.php"; // ไฟล์ของ PHP QR Code library

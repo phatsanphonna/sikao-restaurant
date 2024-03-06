@@ -7,6 +7,10 @@ if (!isset($_SESSION['user'])) {
   header('Location: /signin.php');
 }
 
+if ($_SESSION['user']['user_role'] === 'CHEF') {
+  header('Location: /index.php');
+}
+
 $bill_id = $_GET['bill_id'];
 
 $sql = "SELECT * FROM bill WHERE bill_id = $bill_id";
