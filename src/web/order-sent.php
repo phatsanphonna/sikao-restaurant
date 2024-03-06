@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
   <main class="fill-screen p-4 flex flex-col gap-2 justify-center items-center">
+  <img src="../lib/assets/order-sent.gif" alt="" class="w-36">
     <h1 class="text-sikao-yellow font-bold text-3xl">ส่งอาหารไปที่ครัวเรียบร้อย</h1>
     <p class="text-center text-xl">รายการของท่านถูกส่งไปยังครัวเรียบร้อยแล้ว โปรดรออาหารสักครู่</p>
 
