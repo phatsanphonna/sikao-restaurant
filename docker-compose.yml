@@ -5,7 +5,7 @@ services:
     container_name: web
     image: nginx:latest
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./src:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf
@@ -19,18 +19,19 @@ services:
       - ./src:/usr/share/nginx/html
     networks:
       - sikao
-  # database:
-  #   image: mysql:latest
-  #   ports:
-  #     - 12000:3306
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: test
-  #     MYSQL_USER: user
-  #     MYSQL_PASSWORD: password
-  #   volumes:
-  #     - ./database:/var/lib/mysql
+  database:
+    container_name: database
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Bangkok
+    volumes:
+      - ./database:/var/lib/mysql
+    networks:
+      - sikao
 
 networks:
   sikao:
