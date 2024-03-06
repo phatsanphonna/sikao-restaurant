@@ -8,7 +8,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 if ($_SESSION['user']['user_role'] !== 'CHEF') {
-  header('Location: /signout.php');
+  header('Location: /index.php');
 }
 
 if (isset($_POST['order_list_food_id'])) {
