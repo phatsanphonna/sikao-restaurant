@@ -27,6 +27,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Bangkok
     volumes:
       - ./database:/var/lib/mysql
     networks:
