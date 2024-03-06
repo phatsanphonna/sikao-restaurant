@@ -18,16 +18,18 @@ if (!isset($_SESSION['user'])) {
     .screen {
       height: calc(100vh - 8rem);
     }
+    
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
 
   <?php if (!isset($_GET['table_id'])) { ?>
-    <main class="p-4 flex gap-6">
-      <aside class="screen overflow-y-auto w-96 flex flex-col gap-4">
-        <h4 class="text-4xl font-bold">โต๊ะที่เปิดใช้งาน</h4>
+    <main class="flex mb-4 mb">
+      <aside class="screen overflow-y-auto w-96 flex flex-col gap-4 bg-gray-100 p-5 drop-shadow-lg rounded-lg">
+        <!-- <h4 class="text-4xl font-bold">โต๊ะที่เปิดใช้งาน</h4> -->
         <?php
         $sql = "SELECT * FROM res_order ro JOIN res_table rt ON (ro.table_id = rt.table_id) WHERE ro.checkout_at IS NULL";
         $result = $conn->query($sql);
@@ -40,8 +42,8 @@ if (!isset($_SESSION['user'])) {
                 <?php echo $row['table_name'] ?>
               </h4>
               <div class="flex flex-row justify-between">
-                <p><?php echo $row['customer_amount'] ?> ท่าน</p>
-                <p><?php echo date('H.i', strtotime($row['created_at'])) ?></p>
+                <p><i class="fa-regular fa-user"></i> <?php echo $row['customer_amount'] ?></p>
+                <p><i class="fa-regular fa-clock"></i> <?php echo date('H.i', strtotime($row['created_at'])) ?></p>
               </div>
             </a>
         <?php }
@@ -117,6 +119,7 @@ if (!isset($_SESSION['user'])) {
 
     </main>
   <?php } ?>
+  
 </body>
 
 </html>

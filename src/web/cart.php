@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <ul class="grid grid-cols-1 gap-4">
       <?php
       $order_id = $_GET['order_id'];
-      $sql = "SELECT * FROM cart c JOIN cart_food cf on (cf.cart_id = c.cart_id) JOIN food f on (f.food_id = cf.food_id) WHERE c.order_id = $order_id";
+      $sql = "SELECT * FROM cart c JOIN cart_food cf on (cf.cart_id = c.cart_id) JOIN food f on (f.food_id = cf.food_id) WHERE c.order_id = $order_id ORDER BY f.food_id ASC";
       $result = $conn->query($sql);
 
       $total = 0;

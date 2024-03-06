@@ -26,7 +26,7 @@
 
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-          $sql = "SELECT * FROM order_list_food olf JOIN food f on (f.food_id = olf.food_id) WHERE olf.order_list_id = " . $row['order_list_id'];
+          $sql = "SELECT * FROM order_list_food olf JOIN food f on (f.food_id = olf.food_id) WHERE olf.order_list_id = " . $row['order_list_id'] . " ORDER BY f.food_id ASC";
           $food_result = $conn->query($sql);
       ?>
           <li>
