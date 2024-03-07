@@ -26,7 +26,7 @@ $bill = $conn->query($sql)->fetch_assoc();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>เก็บเงิน - Gin Kao Restaurant</title>
+  <title>ใบเสร็จ - Gin Kao Restaurant</title>
   <?php include '../lib/components/Header.php'; ?>
   <style>
     .screen {
@@ -40,8 +40,9 @@ $bill = $conn->query($sql)->fetch_assoc();
 
   <main class="p-4 flex flex-col gap-6 container mx-auto">
     <header>
-      <h4 class="text-8xl font-bold"><?php echo $bill['table_name'] ?></h4>
-      <hr>
+      <h4 class="text-6xl font-bold">
+        ขอบคุณที่ใช้บริการ
+      </h4>
     </header>
 
     <section class="flex flex-col gap-4">

@@ -98,23 +98,23 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
 
       <div class="grid grid-cols-3 gap-4 text-4xl drop-shadow">
         <?php if (!isset($customer_in_row)) { ?>
-          <a class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+          <a class="h-40 bg-gray-200 rounded-lg flex flex justify-center items-center text-white">
             รายการอาหารที่สั่งไป
           </a>
           <a href="open-table.php?table_id=<?php echo $row['table_id'] ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white bg-primary">
             เปิดบิล
           </a>
-          <a class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+          <a class="h-40 bg-gray-200 rounded-lg flex flex justify-center items-center text-white">
             Print QR Code
           </a>
         <?php } else { ?>
-          <a target="_blank" href="print-qr-code.php?print-qr=<?php echo $row['table_id'] ?>&order_id=<?php echo $customer_in_row['order_id'] ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+          <a target="_blank" href="print-qr-code.php?print-qr=<?php echo $row['table_id'] ?>&order_id=<?php echo $customer_in_row['order_id'] ?>" class="h-40 bg-primary rounded-lg flex flex justify-center items-center text-white">
             Print QR Code
           </a>
-          <a href="order-list.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+          <a href="order-list.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-primary rounded-lg flex flex justify-center items-center text-white">
             รายการอาหารที่สั่งไป
           </a>
-          <a href="checkout.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white">
+          <a href="checkout.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-primary rounded-lg flex flex justify-center items-center text-white">
             จ่ายเงิน
           </a>
         <?php } ?>

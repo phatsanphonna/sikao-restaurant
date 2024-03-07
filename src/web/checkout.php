@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $total = 0;
 
   foreach ($foods as $food) {
-    $total += $food['amount'] * $food['price'];
+    $total += $food['amount'] * $food['food_price'];
   }
 
   $sql = "INSERT INTO bill (order_id, total, payment_method) VALUES ($order_id, $total, '$type')";
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $foods = $result->fetch_all(MYSQLI_ASSOC);
 
     foreach ($foods as $food) {
-      $total += $food['amount'] * $food['price'];
+      $total += $food['amount'] * $food['food_price'];
     }
   }
 }

@@ -31,7 +31,6 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
   <main class="container mx-auto p-4 flex flex-col gap-6 justify-center items-center">
     <header class="w-full">
       <h1 class="text-6xl font-bold">Gin Kao Restaurant</h1>
-      <hr>
     </header>
 
     <h4 class="w-full text-secondary text-4xl font-bold">
