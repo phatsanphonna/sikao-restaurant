@@ -3,11 +3,7 @@ include '../lib/conn.php';
 
 session_start();
 
-if (!isset($_SESSION['user'])) {
-  header('Location: /signin.php');
-}
-
-if ($_SESSION['user']['user_role'] === 'CHEF') {
+if (!isset($_GET['bill_id'])) {
   header('Location: /index.php');
 }
 
