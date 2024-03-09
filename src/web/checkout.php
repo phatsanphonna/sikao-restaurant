@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $type = $_POST['payment_method'];
   $order_id = $_POST['order_id'];
 
-  if (!$type || !$order_id) {
+  if (!isset($type) || !isset($order_id)) {
     header('Location: /tables.php');
   }
 
