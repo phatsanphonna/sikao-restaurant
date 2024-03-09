@@ -15,6 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $type = $_POST['payment_method'];
   $order_id = $_POST['order_id'];
 
+  if (!$type || !$order_id) {
+    header('Location: /tables.php');
+  }
+
   $sql = "UPDATE res_order SET checkout_at = NOW() WHERE order_id = $order_id";
   $conn->query($sql);
 
