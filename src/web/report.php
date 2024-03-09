@@ -11,10 +11,9 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
   header('Location: /index.php');
 }
 
+$history = isset($_POST['history']) ? $_POST['history'] : 'today';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $history = $_POST['history'];
-
-
   if ($history == 'today') {
     $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 DAY ORDER BY created_at ASC";
   } else if ($history == 'past-1-day') {
@@ -124,6 +123,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         labels: <?php
                 $labels = [];
                 foreach ($bills as $bill) {
+                  // dont append exist date
+                  if (in_array(date('d/m', strtotime($bill['created_at'])), $labels)) {
+                    continue;
+                  }
+
                   $labels[] = date('d/m', strtotime($bill['created_at']));
                 }
                 echo json_encode($labels);
@@ -134,6 +138,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $data = [];
 
                 foreach ($bills as $bill) {
+                  if (isset($data[date('d/m', strtotime($bill['created_at']))])) {
+                    $data[date('d/m', strtotime($bill['created_at']))] += $bill['total'];
+                    continue;
+                  }
                   $data[] = $bill['total'];
                 }
 
