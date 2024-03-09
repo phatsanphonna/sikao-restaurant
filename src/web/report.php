@@ -13,30 +13,28 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
 
 $history = isset($_POST['history']) ? $_POST['history'] : 'today';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if ($history == 'today') {
-    $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 DAY ORDER BY created_at ASC";
-  } else if ($history == 'past-1-day') {
-    $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 DAY ORDER BY created_at ASC";
-  } else if ($history == 'past-3-day') {
-    $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 3 DAY ORDER BY created_at ASC";
-  } else if ($history == 'past-5-day') {
-    $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 5 DAY ORDER BY created_at ASC";
-  } else if ($history == 'past-1-week') {
-    $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 WEEK ORDER BY created_at ASC";
-  } else if ($history == 'past-1-month') {
-    $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 MONTH ORDER BY created_at ASC";
-  } else if ($history == 'past-3-month') {
-    $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 3 MONTH ORDER BY created_at ASC";
-  }
+if ($history == 'today') {
+  $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 DAY AND total > 0 ORDER BY created_at ASC";
+} else if ($history == 'past-1-day') {
+  $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 DAY AND total > 0 ORDER BY created_at ASC";
+} else if ($history == 'past-3-day') {
+  $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 3 DAY AND total > 0 ORDER BY created_at ASC";
+} else if ($history == 'past-5-day') {
+  $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 5 DAY AND total > 0 ORDER BY created_at ASC";
+} else if ($history == 'past-1-week') {
+  $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 WEEK AND total > 0 ORDER BY created_at ASC";
+} else if ($history == 'past-1-month') {
+  $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 1 MONTH AND total > 0 ORDER BY created_at ASC";
+} else if ($history == 'past-3-month') {
+  $sql = "SELECT * FROM bill WHERE created_at >= NOW() - INTERVAL 3 MONTH AND total > 0 ORDER BY created_at ASC";
+}
 
-  $bills = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
+$bills = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);
 
-  $total = 0;
+$total = 0;
 
-  foreach ($bills as $bill) {
-    $total += $bill['total'];
-  }
+foreach ($bills as $bill) {
+  $total += $bill['total'];
 }
 ?>
 
@@ -114,39 +112,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </main>
 
+  <?php
+    $labels = [];
+    foreach ($bills as $bill) {
+      if (!isset($labels[date('d/m', strtotime($bill['created_at']))])) {
+        $labels[] = date('d/m', strtotime($bill['created_at']));
+      }
+    }
+
+    $data = [];
+    foreach ($bills as $bill) {
+      if (isset($data[date('d/m', strtotime($bill['created_at']))])) {
+        $data[date('d/m', strtotime($bill['created_at']))] += $bill['total'];
+      } else {
+        $data[date('d/m', strtotime($bill['created_at']))] = $bill['total'];
+      }
+    }
+    ?>
+
   <script defer>
     const ctx = document.getElementById('reportChart')
 
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: <?php
-                $labels = [];
-                foreach ($bills as $bill) {
-                  // group by date
-                  if (isset($labels[date('d/m', strtotime($bill['created_at']))])) {
-                    continue;
-                  }
-                  $labels[] = date('d/m', strtotime($bill['created_at']));
-                }
-                echo json_encode($labels);
-                ?>,
+        labels: <?php echo json_encode($labels); ?>,
         datasets: [{
           label: 'ยอดขาย (บาท)',
-          data: <?php
-                $data = [];
-
-                foreach ($bills as $bill) {
-                  // group by date
-                  if (isset($data[date('d/m', strtotime($bill['created_at']))])) {
-                    $data[date('d/m', strtotime($bill['created_at']))] += $bill['total'];
-                  } else {
-                    $data[date('d/m', strtotime($bill['created_at']))] = $bill['total'];
-                  }
-                }
-
-                echo json_encode($data);
-                ?>,
+          data: <?php echo json_encode($data); ?>,
           borderWidth: 1
         }]
       },

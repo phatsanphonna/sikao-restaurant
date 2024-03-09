@@ -68,7 +68,7 @@ if ($result->num_rows == 0) {
         while ($row = $result->fetch_assoc()) {
       ?>
           <a class="transition-all group rounded-lg p-4 shadow-lg flex flex-col gap-2 hover:bg-primary h-full" href="food.php?order_id=<?php echo $order_id ?>&food_id=<?php echo $row['food_id'] ?>" class="rounded-full bg-primary text-white px-4 py-2">
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['food_image']) ?>" alt="<?php echo $row['food_name'] ?>" class="rounded-lg h-30 object-cover">
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['food_image']) ?>" alt="<?php echo $row['food_name'] ?>" class="rounded-lg h-40 object-cover">
             <h3 class="text-lg"><?php echo $row['food_name'] ?></h3>
             <p class="group-hover:text-white text-2xl text-right font-medium text-primary mt-auto">฿<?php echo number_format($row['food_price']) ?></p>
           </a>
