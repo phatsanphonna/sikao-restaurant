@@ -123,11 +123,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         labels: <?php
                 $labels = [];
                 foreach ($bills as $bill) {
-                  // dont append exist date
-                  if (in_array(date('d/m', strtotime($bill['created_at'])), $labels)) {
+                  // group by date
+                  if (isset($labels[date('d/m', strtotime($bill['created_at']))])) {
                     continue;
                   }
-
                   $labels[] = date('d/m', strtotime($bill['created_at']));
                 }
                 echo json_encode($labels);
@@ -138,11 +137,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $data = [];
 
                 foreach ($bills as $bill) {
+                  // group by date
                   if (isset($data[date('d/m', strtotime($bill['created_at']))])) {
                     $data[date('d/m', strtotime($bill['created_at']))] += $bill['total'];
-                    continue;
+                  } else {
+                    $data[date('d/m', strtotime($bill['created_at']))] = $bill['total'];
                   }
-                  $data[] = $bill['total'];
                 }
 
                 echo json_encode($data);
