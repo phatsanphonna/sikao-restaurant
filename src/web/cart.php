@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p class="text-2xl font-bold text-primary">฿<?php echo number_format($total) ?></p>
       </div>
 
-      <form action="order-sent.php" method="POST" class="flex justify-center">
+      <form action="./order-sent.php" method="POST" class="flex justify-center">
         <input type="hidden" name="order_id" value="<?php echo $_GET['order_id'] ?>">
         <button type="submit" class="bg-primary text-white px-4 py-2 text-center rounded-lg">สั่งอาหาร</a>
       </form>

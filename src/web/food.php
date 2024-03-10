@@ -2,7 +2,7 @@
 include '../lib/conn.php';
 
 if (!isset($_GET['order_id'])) {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 
 $order_id = $_GET['order_id'];
@@ -40,7 +40,7 @@ $food = mysqli_fetch_assoc($result);
       </p>
     </div>
 
-    <form action="add-to-cart.php" method="POST" class="flex flex-col gap-4 items-center">
+    <form action="./add-to-cart.php" method="POST" class="flex flex-col gap-4 items-center">
       <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
       <input type="hidden" name="food_id" value="<?php echo $food_id ?>">
 

@@ -1,4 +1,4 @@
-<a href="<?php isset($_GET['order_id']) ? print("menu.php?order_id=" . $_GET['order_id']) : print('index.php') ?>">
+<a href="<?php isset($_GET['order_id']) ? print("./menu.php?order_id=" . $_GET['order_id']) : print('./index.php') ?>">
   <svg width="188" height="62" viewBox="0 0 188 62" fill="none" xmlns="http://www.w3.org/2000/svg">
     <mask id="mask0_334_947" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="63" height="62">
       <path d="M62.158 0H0V62H62.158V0Z" fill="white" />

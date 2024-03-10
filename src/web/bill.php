@@ -4,15 +4,15 @@ include '../lib/conn.php';
 session_start();
 
 if (!isset($_SESSION['user'])) {
-  header('Location: /signin.php');
+  header('Location: ./signin.php');
 }
 
 if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 
 if (!isset($_GET['bill_id'])) {
-  header('Location: /tables.php');
+  header('Location: ./tables.php');
 }
 
 $bill_id = $_GET['bill_id'];

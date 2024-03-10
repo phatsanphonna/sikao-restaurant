@@ -2,11 +2,11 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-  header('Location: /signin.php');
+  header('Location: ./signin.php');
 }
 
 if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 ?>
 
@@ -41,7 +41,7 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
         ?>
-            <a href="tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-lg h-40 shadow-lg flex flex-col justify-between text-white bg-primary p-4">
+            <a href="./tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-lg h-40 shadow-lg flex flex-col justify-between text-white bg-primary p-4">
               <h4 class="text-8xl font-bold text-left">
                 <?php echo $row['table_name'] ?>
               </h4>
@@ -66,7 +66,7 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
               $active_result = $conn->query($sql);
               $is_active = $active_result->num_rows > 0;
           ?>
-              <a href="tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-2xl w-40 h-20 text-center flex justify-center items-center text-2xl <?php $is_active ? print('text-white bg-primary') : print('text-black bg-stone-200') ?>">
+              <a href="./tables.php?table_id=<?php echo $row['table_id'] ?>" class="rounded-2xl w-40 h-20 text-center flex justify-center items-center text-2xl <?php $is_active ? print('text-white bg-primary') : print('text-black bg-stone-200') ?>">
                 <?php echo $row['table_name'] ?>
               </a>
           <?php }
@@ -101,7 +101,7 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
           <a class="h-40 bg-gray-200 rounded-lg flex flex justify-center items-center text-white">
             รายการอาหารที่สั่งไป
           </a>
-          <a href="open-table.php?table_id=<?php echo $row['table_id'] ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white bg-primary">
+          <a href="./open-table.php?table_id=<?php echo $row['table_id'] ?>" class="h-40 bg-gray-300 rounded-lg flex flex justify-center items-center text-white bg-primary">
             เปิดบิล
           </a>
           <a class="h-40 bg-gray-200 rounded-lg flex flex justify-center items-center text-white">
@@ -111,10 +111,10 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
           <a target="_blank" href="print-qr-code.php?print-qr=<?php echo $row['table_id'] ?>&order_id=<?php echo $customer_in_row['order_id'] ?>" class="h-40 bg-primary rounded-lg flex flex justify-center items-center text-white">
             Print QR Code
           </a>
-          <a href="order-list.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-primary rounded-lg flex flex justify-center items-center text-white">
+          <a href="./order-list.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-primary rounded-lg flex flex justify-center items-center text-white">
             รายการอาหารที่สั่งไป
           </a>
-          <a href="checkout.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-primary rounded-lg flex flex justify-center items-center text-white">
+          <a href="./checkout.php?table_id=<?php print($row['table_id']) ?>" class="h-40 bg-primary rounded-lg flex flex justify-center items-center text-white">
             จ่ายเงิน
           </a>
         <?php } ?>

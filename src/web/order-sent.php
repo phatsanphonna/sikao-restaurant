@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $delete_cart_sql = "DELETE FROM cart_food WHERE cart_id = $cart_id";
   $conn->query($delete_cart_sql);
 
-  header("Location: /order-sent.php?order_id=$order_id");
+  header("Location: ./order-sent.php?order_id=$order_id");
 }
 ?>
 
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1 class="text-sikao-yellow font-bold text-3xl">ส่งอาหารไปที่ครัวเรียบร้อย</h1>
     <p class="text-center text-xl">รายการของท่านถูกส่งไปยังครัวเรียบร้อยแล้ว โปรดรออาหารสักครู่</p>
 
-    <a href="menu.php?order_id=<?php echo $order_id ?>" class="bg-primary text-white px-4 py-2 rounded-lg">สั่งอาหารเพิ่มเติม</a>
+    <a href="./menu.php?order_id=<?php echo $order_id ?>" class="bg-primary text-white px-4 py-2 rounded-lg">สั่งอาหารเพิ่มเติม</a>
   </main>
 </body>
 

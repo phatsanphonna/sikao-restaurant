@@ -4,11 +4,11 @@ include "../lib/conn.php";
 session_start();
 
 if (!isset($_SESSION['user'])) {
-  header('Location: /signin.php');
+  header('Location: ./signin.php');
 }
 
 if ($_SESSION['user']['user_role'] !== 'CHEF') {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 
 if (isset($_POST['order_list_food_id'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['order_list_food_id'])) {
     $conn->query($update_sql);
   }
 
-  header('Location: /kitchen.php?order_list_id=' . $_GET['order_list_id']);
+  header('Location: ./kitchen.php?order_list_id=' . $_GET['order_list_id']);
 }
 ?>
 
@@ -87,7 +87,7 @@ if (isset($_POST['order_list_food_id'])) {
               <h2 class="text-8xl font-bold <?php echo $status; ?>"><?php echo $row['table_name'] ?></h2>
               <div class="flex justify-between items-end">
                 <p class="text-lg text-gray-500">จำนวนอาหารที่สั่งทั้งหมด <?php echo $count_row['total_food'] ?> รายการ</p>
-                <a href="kitchen.php?order_list_id=<?php echo $row['order_list_id'] ?>" class="bg-primary text-white text-2xl rounded-lg p-2">รายละเอียด</a>
+                <a href="./kitchen.php?order_list_id=<?php echo $row['order_list_id'] ?>" class="bg-primary text-white text-2xl rounded-lg p-2">รายละเอียด</a>
               </div>
             </div>
         <?php }

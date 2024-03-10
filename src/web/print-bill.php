@@ -4,7 +4,7 @@ include '../lib/conn.php';
 session_start();
 
 if (!isset($_GET['bill_id'])) {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 
 $bill_id = $_GET['bill_id'];
