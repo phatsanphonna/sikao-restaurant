@@ -11,10 +11,10 @@ $order_id = $_GET['order_id'];
 $url = "http://" . $_SERVER['HTTP_HOST'] . "/menu.php?order_id=" . $order_id;
 
 // สร้าง QR code และเก็บไฟล์ภาพลงในตัวแปร
-ob_start();
-QRCode::png($url, null, QR_ECLEVEL_L, 10, 1);
-$imageString = base64_encode(ob_get_contents());
-ob_end_clean();
+// ob_start();
+// QRCode::png($url, null, QR_ECLEVEL_L, 10, 1);
+// $imageString = base64_encode(ob_get_contents());
+// ob_end_clean();
 
 $sql = "SELECT * FROM res_order ro JOIN res_table rt ON (rt.table_id = ro.table_id) WHERE order_id = $order_id LIMIT 1";
 $order = $conn->query($sql)->fetch_assoc();
