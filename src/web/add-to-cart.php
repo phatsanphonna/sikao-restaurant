@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_query($conn, $insert_sql);
   }
 
-  header("Location: ./menu.php?order_id=$order_id");
+  header("Location: menu.php?order_id=$order_id");
   exit;
 }
 ?>

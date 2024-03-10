@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
 
-  header("Location: ./tables.php");
+  header("Location: tables.php");
   exit;
 }
 ?>

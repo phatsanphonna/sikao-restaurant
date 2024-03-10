@@ -2,7 +2,7 @@
 include '../lib/conn.php';
 
 if (!isset($_GET['order_id'])) {
-  header('Location: /index.php');
+  header('Location: index.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
 
-  <main class="p-4 flex flex-col gap-6">
+  <main class="p-4 flex flex-col gap-6 container mx-auto">
     <h2 class="text-secondary text-left text-4xl font-bold">
       ตะกร้า
     </h2>

@@ -6,7 +6,7 @@ if (!isset($_GET['order_id'])) {
 }
 
 if (!isset($_GET['category_id'])) {
-  header('Location: ./menu.php?order_id=' . $_GET['order_id'] . '&category_id=1');
+  header('Location: menu.php?order_id=' . $_GET['order_id'] . '&category_id=1');
 }
 
 $sql = "SELECT * FROM res_order WHERE order_id = " . $_GET['order_id'] . " AND checkout_at IS NULL";
@@ -30,18 +30,18 @@ if ($result->num_rows == 0) {
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
 
-  <main class="p-4 flex flex-col gap-6">
+  <main class="container mx-auto p-4 flex flex-col gap-6">
     <?php
     $order_id = $_GET['order_id'];
     $sql = "SELECT * FROM category ORDER BY category_id ASC";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) { ?>
-      <div class="grid grid-cols-3 gap-2">
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
         <?php while ($row = $result->fetch_assoc()) {
           $category_id = $row['category_id']
         ?>
-          <a href="./menu.php?order_id=<?php echo $order_id ?>&category_id=<?php echo $category_id ?>" class="rounded-full p-1 shadow-lg text-center <?php $category_id == $_GET['category_id'] ? print('text-white bg-primary') : print('') ?>">
+          <a href="menu.php?order_id=<?php echo $order_id ?>&category_id=<?php echo $category_id ?>" class="rounded-full p-1 shadow-lg text-center <?php $category_id == $_GET['category_id'] ? print('text-white bg-primary') : print('') ?>">
             <?php echo $row['category_name'] ?>
           </a>
         <?php } ?>
@@ -59,7 +59,7 @@ if ($result->num_rows == 0) {
       ?>
     </h2>
 
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
       <?php
       $sql = "SELECT * FROM food WHERE category_id = $category_id";
       $result = $conn->query($sql);

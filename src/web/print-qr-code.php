@@ -2,7 +2,7 @@
 include '../lib/conn.php';
 
 if (!isset($_GET['order_id'])) {
-  header('Location: ./index.php');
+  header('Location: index.php');
 }
 
 $order_id = $_GET['order_id'];

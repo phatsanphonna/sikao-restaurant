@@ -23,7 +23,7 @@ if (isset($order_id)) {
         <?php echo $_SESSION['user']['username']; ?>
       </a>
   
-      <a href="./signout.php" class="text-xl text-secondary underline" href="index.php">
+      <a href="signout.php" class="text-xl text-secondary underline">
         Sign Out
       </a>
     </div>

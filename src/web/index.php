@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-  header('Location: ./signin.php');
+  header('Location: signin.php');
 }
 
 if ($_SESSION['user']['user_role'] === 'CHEF') {
@@ -38,8 +38,8 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
     </h4>
   
     <div class="grid grid-cols-3 gap-4 w-full text-white font-medium text-4xl">
-      <a href="./tables.php" class="bg-primary w-full h-40 rounded flex justify-center items-center">จัดการโต๊ะ</a>
-      <a href="./report.php" class="bg-primary w-full h-40 rounded flex justify-center items-center">สรุปยอดขาย</a>
+      <a href="tables.php" class="bg-primary w-full h-40 rounded flex justify-center items-center">จัดการโต๊ะ</a>
+      <a href="report.php" class="bg-primary w-full h-40 rounded flex justify-center items-center">สรุปยอดขาย</a>
     </div>
   </main>
 </body>

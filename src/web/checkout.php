@@ -4,11 +4,11 @@ include '../lib/conn.php';
 session_start();
 
 if (!isset($_SESSION['user'])) {
-  header('Location: ./signin.php');
+  header('Location: signin.php');
 }
 
 if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: ./index.php');
+  header('Location: index.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $order_id = $_POST['order_id'];
 
   if (!isset($type) || !isset($order_id)) {
-    header('Location: ./tables.php');
+    header('Location: tables.php');
   }
 
   $sql = "UPDATE res_order SET checkout_at = NOW() WHERE order_id = $order_id";

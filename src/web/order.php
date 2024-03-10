@@ -11,7 +11,7 @@
 <body>
   <?php include '../lib/components/Navbar.php'; ?>
 
-  <main class="p-4 flex flex-col gap-6">
+  <main class="p-4 flex flex-col gap-6 container mx-auto">
     <h2 class="text-secondary text-left text-4xl font-bold">
       รายการอาหารที่สั่งไป
     </h2>
