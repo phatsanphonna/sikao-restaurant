@@ -28,3 +28,5 @@ RUN apk add libzip-dev
 
 RUN docker-php-ext-install pdo pdo_mysql zip bcmath
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
+CMD php-fpm -F -R
