@@ -45,7 +45,7 @@ $order = $conn->query($sql)->fetch_assoc();
     <p>จำนวน <?php echo $order['customer_amount'] ?> ท่าน</p>
   </header>
 
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $imageString ?>" alt="<?php echo $order['table_name'] ?> QR Code">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $url ?>" alt="<?php echo $order['table_name'] ?> QR Code">
   <hr class="w-full">
   <p class="text-center text-sm">QR Code สำหรับสั่งอาหารของโต๊ะ ท่านสามารถใช้ Smartphone ในการสแกนผ่าน Application อ่าน QR Code</p>
 </body>
