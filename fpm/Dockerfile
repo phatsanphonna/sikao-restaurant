@@ -2,6 +2,8 @@ FROM php:7.4-fpm-alpine
 
 WORKDIR /var/www/html
 
+COPY . .
+
 # Setup GD extension
 RUN apk add --no-cache \
       freetype \
