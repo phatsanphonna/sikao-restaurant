@@ -4,11 +4,11 @@ include '../lib/conn.php';
 session_start();
 
 if (!isset($_SESSION['user'])) {
-  header('Location: /signin.php');
+  header('Location: ./signin.php');
 }
 
 if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 
 $history = isset($_POST['history']) ? $_POST['history'] : 'today';
@@ -56,7 +56,7 @@ foreach ($bills as $bill) {
       สรุปยอดขาย
     </h2>
 
-    <form method="POST" action="" class="flex gap-2 items-center">
+    <form method="POST" action="." class="flex gap-2 items-center">
       <label for="history" class="text-xl font-medium">ยอดขายของ : </label>
       <select id='history' name="history" class="text-center border-surface rounded-full" onchange="this.form.submit()">
         <option value="today" <?php if ($history == 'today') echo 'selected' ?>>วันนี้</option>

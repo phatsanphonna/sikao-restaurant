@@ -4,11 +4,11 @@ include '../lib/conn.php';
 session_start();
 
 if (!isset($_SESSION['user'])) {
-  header('Location: /signin.php');
+  header('Location: ./signin.php');
 }
 
 if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $order_id = $_POST['order_id'];
 
   if (!isset($type) || !isset($order_id)) {
-    header('Location: /tables.php');
+    header('Location: ./tables.php');
   }
 
   $sql = "UPDATE res_order SET checkout_at = NOW() WHERE order_id = $order_id";
@@ -39,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $sql = "INSERT INTO bill (order_id, total, payment_method) VALUES ($order_id, $total, '$type')";
   $conn->query($sql);
 
-  header("Location: /bill.php?bill_id=" . $conn->insert_id);
+  header("Location: ./bill.php?bill_id=" . $conn->insert_id);
 } else if (!isset($_GET['table_id']) && !isset($_GET['order_id'])) {
-  header('Location: /tables.php');
+  header('Location: ./tables.php');
 } else {
   $table_id = $_GET['table_id'];
 
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <ul class="grid grid-cols-3 gap-4">
       <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
-        <form method="POST" action="checkout.php" class="h-full">
+        <form method="POST" action="./checkout.php" class="h-full">
           <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
           <input type="hidden" name="payment_method" value="CASH">
           <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
       </li>
       <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
-        <form method="POST" action="checkout.php" class="h-full">
+        <form method="POST" action="./checkout.php" class="h-full">
           <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
           <input type="hidden" name="payment_method" value="QR_PAYMENT">
           <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
       </li>
       <li class="transition-all h-80 rounded-lg bg-white bg-stone-100 shadow-xl border group hover:bg-primary">
-        <form method="POST" action="checkout.php" class="h-full">
+        <form method="POST" action="./checkout.php" class="h-full">
           <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
           <input type="hidden" name="payment_method" value="CREDIT_CARD">
           <a onclick="this.parentNode.submit();" class="cursor-pointer flex flex-col gap-4 items-center justify-center h-full">

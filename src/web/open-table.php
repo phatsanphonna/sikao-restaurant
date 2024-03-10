@@ -2,11 +2,11 @@
 include '../lib/conn.php';
 
 if (!isset($_GET['table_id'])) {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 
 if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: /index.php');
+  header('Location: ./index.php');
 }
 
 $table_id = $_GET['table_id'];
@@ -41,7 +41,7 @@ $table_id = $_GET['table_id'];
       <hr>
     </header>
 
-    <form action="add-people-to-table.php" method="POST" class="flex flex-col gap-4 items-center justify-center h-full">
+    <form action="./add-people-to-table.php" method="POST" class="flex flex-col gap-4 items-center justify-center h-full">
       <p class="text-4xl">จำนวนคนที่นั่ง</p>
 
       <input hidden name="table_id" value="<?php echo $table_id ?>">
