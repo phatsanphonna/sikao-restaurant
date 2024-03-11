@@ -160,13 +160,6 @@ if (isset($_POST['order_list_food_id'])) {
       </div>
     <?php } ?>
   </main>
-
-  <script>
-    // refresh page every 10 seconds
-    setTimeout(() => {
-      location.reload();
-    }, 10000);
-  </script>
 </body>
 
 </html>

@@ -59,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="flex gap-4 items-center">
               <img src="data:image/jpeg;base64,<?php echo base64_encode($row['food_image']) ?>" alt="<?php echo $row['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
             </div>
-            <div class="flex flex-col gap-2 w-full">
+            <div class="flex flex-col gap-2">
               <h3 class="text-lg font-medium"><?php echo $row['food_name'] ?></h3>
 
-              <div class="flex justify-between items-center w-full">
+              <div class="flex justify-between items-center">
                 <form class="flex w-1/2 justify-center items-center gap-2" method="POST">
                   <input type="hidden" name="cart_food_id" value="<?php echo $row['cart_food_id'] ?>">
                   <button name='decrement' type="submit" class="bg-surface text-black px-3 py-1 rounded-full">-</button>
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </ul>
 
     <?php if ($result->num_rows > 0) { ?>
-      <div class="flex justify-between w-full">
+      <div class="flex justify-between">
         <h3 class="text-xl font-bold">ราคารวม</h3>
         <p class="text-2xl font-bold text-primary">฿<?php echo number_format($total) ?></p>
       </div>
