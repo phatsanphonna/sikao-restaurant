@@ -41,8 +41,19 @@
                       <img src="data:image/jpeg;base64,<?php echo base64_encode($food_row['food_image']) ?>" alt="<?php echo $food_row['food_name'] ?>" class="rounded-lg h-24 w-24 object-cover">
                     </div>
                     <div class="flex flex-col gap-2 w-full">
-                      <h3 class="text-lg font-medium"><?php echo $food_row['food_name'] ?></h3>
-
+                      <div class="flex flex-col">
+                        <h3 class="text-lg font-medium"><?php echo $food_row['food_name'] ?></h3>
+                        <p>สถานะ:
+                          <?php
+                          if ($food_row['order_food_status'] == 'SENT_TO_KITCHEN') {
+                            echo 'ส่งให้ครัว';
+                          } else if ($food_row['order_food_status'] == 'COOKING') {
+                            echo 'กำลังทำ';
+                          } else if ($food_row['order_food_status'] == 'READY') {
+                            echo 'เสร็จแล้ว';
+                          } ?>
+                        </p>
+                      </div>
                       <div class="flex justify-between items-center gap-2 w-full">
                         <input type="number" name="amount" class="text-center w-1/2 md:w-1/3 border-surface rounded-full" readonly value="<?php echo $food_row['amount'] ?>" min="1">
                         <p class="text-2xl font-bold text-primary pr-2">฿<?php echo number_format($food_row['amount'] * $food_row['food_price']) ?></p>
