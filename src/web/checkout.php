@@ -1,15 +1,10 @@
 <?php
 include '../lib/conn.php';
+include '../lib/auth.php';
 
 session_start();
 
-if (!isset($_SESSION['user'])) {
-  header('Location: signin.php');
-}
-
-if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: index.php');
-}
+isauth();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $type = $_POST['payment_method'];

@@ -1,13 +1,10 @@
 <?php
+include '../lib/conn.php';
+include '../lib/auth.php';
+
 session_start();
 
-if (!isset($_SESSION['user'])) {
-  header('Location: signin.php');
-}
-
-if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: index.php');
-}
+isauth();
 ?>
 
 <!DOCTYPE html>

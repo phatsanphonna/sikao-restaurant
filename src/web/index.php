@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: ./kitchen.php');
+  header('Location: kitchen.php');
 }
 ?>
 

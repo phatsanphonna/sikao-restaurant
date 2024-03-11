@@ -1,13 +1,14 @@
 <?php
 include '../lib/conn.php';
+include '../lib/auth.php';
+
+session_start();
 
 if (!isset($_GET['table_id'])) {
   header('Location: index.php');
 }
 
-if ($_SESSION['user']['user_role'] === 'CHEF') {
-  header('Location: index.php');
-}
+isauth();
 
 $table_id = $_GET['table_id'];
 ?>
