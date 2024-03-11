@@ -6,11 +6,8 @@ if (!isset($_GET['order_id'])) {
 }
 
 $order_id = $_GET['order_id'];
-
-// URL ของ Google
 $url = "http://" . $_SERVER['HTTP_HOST'] . "/menu.php?order_id=" . $order_id;
 
-// สร้าง QR code และเก็บไฟล์ภาพลงในตัวแปร
 // ob_start();
 // QRCode::png($url, null, QR_ECLEVEL_L, 10, 1);
 // $imageString = base64_encode(ob_get_contents());
