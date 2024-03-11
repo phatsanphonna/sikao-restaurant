@@ -17,7 +17,7 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php include '../lib/components/Header.php'; ?>
-  <title>Document</title>
+  <title>หน้าหลัก - GIN KAO Restaurant</title>
   <style>
     .screen {
       height: calc(100vh - 6rem);
@@ -30,7 +30,7 @@ if ($_SESSION['user']['user_role'] === 'CHEF') {
 
   <main class="container mx-auto p-4 flex flex-col gap-6 justify-center items-center">
     <header class="w-full">
-      <h1 class="text-6xl font-bold">Gin Kao Restaurant</h1>
+      <h1 class="text-6xl font-bold">GIN KAO Restaurant</h1>
     </header>
 
     <h4 class="w-full text-secondary text-4xl font-bold">
