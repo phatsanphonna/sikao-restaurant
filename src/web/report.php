@@ -110,17 +110,17 @@ foreach ($bills as $bill) {
   <?php
     $labels = [];
     foreach ($bills as $bill) {
-      if (!isset($labels[date('d/m', strtotime($bill['created_at']))])) {
-        $labels[] = date('d/m', strtotime($bill['created_at']));
+      if (!isset($labels[date('d/m H:i', strtotime($bill['created_at']))])) {
+        $labels[] = date('d/m H:i', strtotime($bill['created_at']));
       }
     }
 
     $data = [];
     foreach ($bills as $bill) {
-      if (isset($data[date('d/m', strtotime($bill['created_at']))])) {
-        $data[date('d/m', strtotime($bill['created_at']))] += $bill['total'];
+      if (isset($data[date('d/m H:i', strtotime($bill['created_at']))])) {
+        $data[date('d/m H:i', strtotime($bill['created_at']))] += $bill['total'];
       } else {
-        $data[date('d/m', strtotime($bill['created_at']))] = $bill['total'];
+        $data[date('d/m H:i', strtotime($bill['created_at']))] = $bill['total'];
       }
     }
     ?>
