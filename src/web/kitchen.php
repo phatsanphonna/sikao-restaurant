@@ -161,12 +161,14 @@ if (isset($_POST['order_list_food_id'])) {
     <?php } ?>
   </main>
 
-  <script>
-    // refresh page every 10 seconds
-    setTimeout(() => {
-      location.reload();
-    }, 10000);
-  </script>
+  <?php if (!isset($_GET['order_list_id'])) { ?>
+    <script>
+      // refresh page every 10 seconds
+      setTimeout(() => {
+        location.reload();
+      }, 10000);
+    </script>
+  <?php } ?>
 </body>
 
 </html>
