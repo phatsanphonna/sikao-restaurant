@@ -1,4 +1,4 @@
-# ร้านอาหาร GIN KAO (เดิม Si Kao)
+# ร้านอาหาร GIN KAO
 
 ## วิธีการติดตั้ง Virtual Machines
 1. ดาวน์โหลดไฟล์ OVA
